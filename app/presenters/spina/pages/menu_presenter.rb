@@ -16,6 +16,7 @@ module Spina
       self.list_class = 'nav'
       self.list_item_tag = :li
       self.list_item_css = nil
+      self.list_item_link = nil
       self.list_wrapper = false
       self.selected_css = 'active'
       self.current_css = 'current'
@@ -63,7 +64,7 @@ module Spina
       def render_menu_item(menu_item, index, menu_items_length)
         content_tag(list_item_tag, class: menu_item_css(menu_item[0], index, menu_items_length, !menu_item[1].empty?)) do
           buffer = ActiveSupport::SafeBuffer.new
-          buffer << link_to(menu_item[0].menu_title, menu_item[0].full_materialized_path)
+          buffer << link_to(menu_item[0].menu_title, menu_item[0].full_materialized_path, class: list_item_link)
           buffer << render_list_wrapper(menu_item[1])
           buffer
         end
